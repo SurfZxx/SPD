@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#define MAX_SIZE 1000
+#define MAX_SIZE 500000
 
 int is_even(int number) {
     if (number%2 == 0) {
@@ -23,17 +23,21 @@ int multiple(int number) {
 }
 
 void test(void) {
-    //int number;
+    int number = 100000;
     //scanf("%d", &number);
     int array[MAX_SIZE];
     int elements = 0; //nr de elementos no array de primos
     int i = 10; //vai incrementar ate MAX_SIZE
     int result = 0;
-    for (int j = 0; j < 10; j++) {
+    int count = 0;
+    for (int j = 0; j < 8; j++) {
         result = is_even(j);
         if (result == 0) {
+            if (count <= number) {
             array[elements] = j;
             elements++;
+            count++;
+            }
         }
     }
 
@@ -42,8 +46,11 @@ void test(void) {
         if (result == 0) {
             result = multiple(i);
             if (result == 0) {
+                if (count <= number) {
                 array[elements] = i;
                 elements++;
+                count++;
+                }
             }
         }
         i++;
@@ -51,11 +58,10 @@ void test(void) {
 
     //int lenght = sizeof(array)/sizeof(array[0]);
     for (int nr = 0; nr < elements; nr++) {
-        printf("%d ", array[nr]);
+        printf("%d\n", array[nr]);
     }
 
 }
-
 
 int main(int argc, char const *argv[]) {
     test();
